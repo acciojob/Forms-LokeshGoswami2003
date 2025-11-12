@@ -1,51 +1,30 @@
-import React, { useRef } from "react";
-import Card from "./Card";
-
+import React from 'react'
+import {useRef} from 'react';
 const FormRef = () => {
-  const nameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const confirmRef = useRef();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = {
-      full_name: nameRef.current.value,
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-      password_confirmation: confirmRef.current.value,
-    };
-    console.log("Form Data (useRef):", data);
-    alert("Form submitted using useRef!");
-  };
-
+    const fullNameRef=useRef(null);
+    const emailRef=useRef(null);
+    const passwordRef=useRef(null);
+    const confirmPasswordRef=useRef(null);
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        console.log("Full Name ",fullNameRef.current.value);
+        console.log("Email",emailRef.current.value);
+        console.log("Password ",passwordRef.current.value);
+        console.log("Confirm Password ",confirmPasswordRef.current.value);
+    }
   return (
-    <Card>
-      <form id="info-form" onSubmit={handleSubmit}>
-        <div>
-          <label>Full Name:</label>
-          <input id="full_name" ref={nameRef} type="text" />
-        </div>
+    <div>
+        <section id="form-ref-link">
+         <form id="info-form" onSubmit={handleSubmit}>
+            <input id="full_name" type="text" placeholder='Full Name' ref={fullNameRef}/>
+            <input id="email" type="email" placeholder='Email' ref={emailRef}/>
+            <input id="password" type="password" placeholder='Password' ref={passwordRef}/>
+            <input id="password_confirmation" type="password" placeholder='Confirm Password' ref={confirmPasswordRef}/>
+            <button type="submit">Submit</button>
+        </form>
+        </section>
+    </div>
+  )
+}
 
-        <div>
-          <label>Email:</label>
-          <input id="email" ref={emailRef} type="email" />
-        </div>
-
-        <div>
-          <label>Password:</label>
-          <input id="password" ref={passwordRef} type="password" />
-        </div>
-
-        <div>
-          <label>Confirm Password:</label>
-          <input id="password_confirmation" ref={confirmRef} type="password" />
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
-    </Card>
-  );
-};
-
-export default FormRef;
+export default FormRef
